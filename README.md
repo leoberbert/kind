@@ -12,12 +12,19 @@ Caso queira utilizar o ingress controller(NGINX), utilizar o comando abaixo:
 
 ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml```
 
-É necessário que aguardar um pouco até até a aconlusão do processo. É possivel utilizar o comando abaixo para verificar se tudo está concluido:
+É necessário que aguardar um pouco até a conlusão do processo. É possivel utilizar o comando abaixo para verificar se tudo está concluido:
 ```shell
 kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
   --selector=app.kubernetes.io/component=controller \
   --timeout=90s
+```
+Necessário també, incluir no /etc/docker/daemon.json o conteúdo abaixo:
+
+```json
+{
+  "insecure-registries" : ["localhost:5000","registry.local:5000"]
+}
 ```
 Para subir o registry que será utilizado para publicação das imagens utilizar o comando abaixo:
 
