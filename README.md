@@ -26,6 +26,10 @@ Necessário també, incluir no /etc/docker/daemon.json o conteúdo abaixo:
   "insecure-registries" : ["localhost:5000","registry.local:5000"]
 }
 ```
+Realizar o restart do Docker:
+
+```sudo systemctl restart docker```
+
 Para subir o registry que será utilizado para publicação das imagens utilizar o comando abaixo:
 
 ```docker run -d -p 5000:5000 --name registry --add-host registry.local:192.168.1.66 registry:2```
